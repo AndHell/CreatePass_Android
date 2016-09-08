@@ -3,7 +3,7 @@
   <style name="MyTheme" parent="@android:style/Theme.Material.Light.DarkActionBar">
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowActionBar">false</item>
-    <item name="android:colorPrimary">#1bd100</item>
-    <item name="android:colorAccent">#000</item>
+    <item name="android:colorPrimary">#04E9F9</item>
+    <item name="android:colorAccent">#47d8b9</item>
   </style>
 </resources>

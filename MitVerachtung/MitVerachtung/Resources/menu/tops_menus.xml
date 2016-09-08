@@ -3,5 +3,5 @@
   <item
        android:id="@+id/menu_preferences"
        android:showAsAction="never"
-       android:title="Preferences" />
+       android:title="Settings" />
 </menu>

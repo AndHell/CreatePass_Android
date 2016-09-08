@@ -23,10 +23,10 @@ namespace MitVerachtung
 
             // Get our button from the layout resource,
             // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.button);
-            var text = FindViewById<EditText>(Resource.Id.editText1);
-            var text2 = FindViewById<EditText>(Resource.Id.editText2);
-            var res = FindViewById<TextView>(Resource.Id.textView1);
+            Button button = FindViewById<Button>(Resource.Id.btn_createPW);
+            var text = FindViewById<EditText>(Resource.Id.txt_master);
+            var text2 = FindViewById<EditText>(Resource.Id.txt_site);
+            var res = FindViewById<TextView>(Resource.Id.txt_finalPW);
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
 
             var editToolbar = FindViewById<Toolbar>(Resource.Id.edit_toolbar);
@@ -57,6 +57,11 @@ namespace MitVerachtung
         {
             Toast.MakeText(this, "Action selected: " + item.TitleFormatted,
                 ToastLength.Short).Show();
+
+            if (item.ItemId == Resource.Id.menu_preferences)
+            {
+                StartActivity(new Intent(this, typeof(SettingsActivity)));
+            }
             return base.OnOptionsItemSelected(item);
         }
     }

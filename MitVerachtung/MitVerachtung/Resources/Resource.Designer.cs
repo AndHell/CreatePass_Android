@@ -61,16 +61,10 @@ namespace MitVerachtung
 		{
 			
 			// aapt resource value: 0x7f070003
-			public const int button = 2131165187;
+			public const int btn_createPW = 2131165187;
 			
-			// aapt resource value: 0x7f070001
-			public const int editText1 = 2131165185;
-			
-			// aapt resource value: 0x7f070002
-			public const int editText2 = 2131165186;
-			
-			// aapt resource value: 0x7f070006
-			public const int edit_toolbar = 2131165190;
+			// aapt resource value: 0x7f070005
+			public const int edit_toolbar = 2131165189;
 			
 			// aapt resource value: 0x7f070007
 			public const int menu_copy = 2131165191;
@@ -81,14 +75,20 @@ namespace MitVerachtung
 			// aapt resource value: 0x7f070008
 			public const int menu_reset = 2131165192;
 			
-			// aapt resource value: 0x7f070004
-			public const int tabWidget1 = 2131165188;
-			
-			// aapt resource value: 0x7f070005
-			public const int textView1 = 2131165189;
+			// aapt resource value: 0x7f070006
+			public const int textView1 = 2131165190;
 			
 			// aapt resource value: 0x7f070000
 			public const int toolbar = 2131165184;
+			
+			// aapt resource value: 0x7f070004
+			public const int txt_finalPW = 2131165188;
+			
+			// aapt resource value: 0x7f070001
+			public const int txt_master = 2131165185;
+			
+			// aapt resource value: 0x7f070002
+			public const int txt_site = 2131165186;
 			
 			static Id()
 			{
@@ -107,7 +107,10 @@ namespace MitVerachtung
 			public const int Main = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int toolbar = 2130903041;
+			public const int Settings = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int toolbar = 2130903042;
 			
 			static Layout()
 			{
