@@ -21,13 +21,13 @@ namespace MitVerachtung
 
             SetContentView(Resource.Layout.Settings);
 
-            //var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
 
-            //SetActionBar(toolbar);
+            SetActionBar(toolbar);
 
-            //ActionBar.Title = "Settings";
-            //ActionBar.SetDisplayHomeAsUpEnabled(true);
-            //ActionBar.SetHomeButtonEnabled(true);
+            ActionBar.Title = "Settings";
+            ActionBar.SetDisplayHomeAsUpEnabled(true);
+            ActionBar.SetHomeButtonEnabled(true);
             
             // Create your application here
         }

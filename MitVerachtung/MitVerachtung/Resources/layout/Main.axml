@@ -22,11 +22,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_createPW" />
-    <TextView
-        android:text="Text"
+    <EditText
+        android:text=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_finalPW" />
+        android:id="@+id/txt_finalPW"
+        android:editable="false" />
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="0dp"

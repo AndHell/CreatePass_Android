@@ -4,6 +4,11 @@
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowActionBar">false</item>
     <item name="android:colorPrimary">#04E9F9</item>
-    <item name="android:colorAccent">#47d8b9</item>
+    <item name="android:colorAccent">#04E9F9</item>
   </style>
+  
+    <style name="MyTheme.Splash" parent ="@android:style/Theme.Material">
+      <item name="android:windowBackground">@drawable/splashscreen</item>
+      <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>
