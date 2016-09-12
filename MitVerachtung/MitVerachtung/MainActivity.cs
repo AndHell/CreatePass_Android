@@ -26,35 +26,22 @@ namespace MitVerachtung
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
-
-            // Get our button from the layout resource,
-            // and attach an event to it
+            
             btn_createPW = FindViewById<Button>(Resource.Id.btn_createPW);
             txt_master = FindViewById<EditText>(Resource.Id.txt_master);
             txt_site = FindViewById<EditText>(Resource.Id.txt_site);
             txt_password = FindViewById<EditText>(Resource.Id.txt_finalPW);
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetActionBar(toolbar);
+            ActionBar.Title = "CreatePass";
 
             var editToolbar = FindViewById<Toolbar>(Resource.Id.edit_toolbar);
             editToolbar.InflateMenu(Resource.Menu.edit_menus);
             editToolbar.MenuItemClick += (sender, e) => {
-
-                if (e.Item.ItemId == Resource.Id.menu_reset)
-                {
-                    txt_master.Text = "";
-                    txt_site.Text = "";
-                    txt_password.Text = "";
-                }
-                else if(e.Item.ItemId == Resource.Id.menu_copy)
-                {
-                    ((ClipboardManager)GetSystemService(ClipboardService)).PrimaryClip = ClipData.NewPlainText("CreatePass", txt_password.Text);
-                    Toast.MakeText(this, "Copied Password to Clipboard.", ToastLength.Short).Show();
-                }
+                editToolbarClicked(e.Item);
             };
 
-            SetActionBar(toolbar);
-            ActionBar.Title = "CreatePass";
 
             btn_createPW.Click += delegate {
                 btn_CreatePasswordClicked();
@@ -70,6 +57,7 @@ namespace MitVerachtung
             MenuInflater.Inflate(Resource.Menu.tops_menus, menu);
             return base.OnCreateOptionsMenu(menu);
         }
+
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             if (item.ItemId == Resource.Id.menu_preferences)
@@ -78,6 +66,35 @@ namespace MitVerachtung
             }
             return base.OnOptionsItemSelected(item);
         }
+
+        private void editToolbarClicked(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Resource.Id.menu_reset:
+                    ResetInputs();
+                    break;
+                case Resource.Id.menu_copy:
+                    if (!string.IsNullOrEmpty(txt_password.Text))
+                    {
+                        ((ClipboardManager)GetSystemService(ClipboardService)).PrimaryClip = ClipData.NewPlainText("CreatePass", txt_password.Text);
+                        Toast.MakeText(this, "Copied Password to Clipboard.", ToastLength.Short).Show();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void ResetInputs()
+        {
+            txt_master.Text = "";
+            txt_site.Text = "";
+            txt_password.Text = "";
+            //remove pw from Clipboard
+            ((ClipboardManager)GetSystemService(ClipboardService)).PrimaryClip = ClipData.NewPlainText("CreatePass", "");
+        }
+
 
         private void btn_CreatePasswordClicked()
         {
@@ -89,6 +106,7 @@ namespace MitVerachtung
             {
                 return;
             }
+
             if (masterkey.Length < 8)
             {
                 Toast.MakeText(this, "Your Masterkey is to short. 8 chars min.", ToastLength.Long).Show();
