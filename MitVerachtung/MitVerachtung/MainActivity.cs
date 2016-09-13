@@ -18,11 +18,19 @@ namespace MitVerachtung
         EditText txt_password;
         Button btn_createPW;
 
+        Services.SettingService settings;
 
         protected override void OnCreate(Bundle bundle)
         {
-            passwordGerneator = new CreatePass.PasswordGeneration(18, "saltneedstogohere", true, true, true);
             base.OnCreate(bundle);
+
+            settings = Services.SettingService.GetInstance();
+
+            settings.OnSettingsChangedEvent += Settings_OnSettingsChangedEvent;
+
+            passwordGerneator = new CreatePass.PasswordGeneration(settings.PwLength,
+                                                    settings.Salt, settings.UseNumChars,
+                                                    settings.UseAlphaNumChars, settings.UseSpecialChars);
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
@@ -51,7 +59,14 @@ namespace MitVerachtung
                 imm.HideSoftInputFromWindow(btn_createPW.WindowToken, 0);
             };
         }
-        
+
+        private void Settings_OnSettingsChangedEvent()
+        {
+            passwordGerneator = new CreatePass.PasswordGeneration(settings.PwLength,
+                                                    settings.Salt, settings.UseNumChars,
+                                                    settings.UseAlphaNumChars, settings.UseSpecialChars);
+        }
+
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.tops_menus, menu);

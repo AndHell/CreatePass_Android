@@ -15,12 +15,12 @@
     <SeekBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/sl_pwLenght" 
-        android:max="24"/>
-  <TextView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:id="@+id/lbl_pwLenght" />
+        android:id="@+id/sl_pwLenght"
+        android:max="24" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lbl_pwLenght" />
     <TextView
         android:text="Chars"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -32,13 +32,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cb_useNumber"
-        android:editable="false" />
+        android:editable="false"
+        android:enabled="false" />
     <CheckBox
         android:text="Use aplhabet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cb_useAlphabet"
-        android:editable="false" />
+        android:editable="false"
+        android:enabled="false" />
     <CheckBox
         android:text="Use specialkeys"
         android:layout_width="match_parent"
