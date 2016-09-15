@@ -72,12 +72,21 @@ namespace MitVerachtung
                 }
             };
 
+            btn_saveSynckey.Click += Btn_saveSynckey_Click;
+
 
             SetActionBar(toolbar);
 
             ActionBar.Title = "Settings";
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetHomeButtonEnabled(true);
+        }
+
+        private void Btn_saveSynckey_Click(object sender, EventArgs e)
+        {
+            settings.UpdateSalt(txt_synckey.Text);
+
+            Toast.MakeText(this, "Synckey changed", ToastLength.Short);
         }
 
         private void Cb_useSpecial_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
@@ -87,7 +96,7 @@ namespace MitVerachtung
 
         private void Txt_synckey_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
-            settings.UpdateSalt(txt_synckey.Text);
+            Toast.MakeText(this, "Changing the synckey will result in different passwords. \n\r Only save if you realy want to.", ToastLength.Long);
         }
 
         public override bool OnNavigateUp()

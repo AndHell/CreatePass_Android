@@ -17,7 +17,7 @@ namespace MitVerachtung
     [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : Activity
     {
-        static readonly string TAG = "X:" + typeof(SplashActivity).Name;
+        static readonly string TAG = "X:" + nameof(SplashActivity);
 
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
         {
