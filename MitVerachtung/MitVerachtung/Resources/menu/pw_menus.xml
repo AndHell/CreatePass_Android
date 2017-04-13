@@ -5,8 +5,4 @@
        android:showAsAction="ifRoom"
        android:icon="@drawable/ic_menu_copy_holo_dark"
        android:title="Copy" />
-  <item
-       android:id="@+id/menu_reset"
-       android:showAsAction="ifRoom"
-       android:title="Reset" />
 </menu>

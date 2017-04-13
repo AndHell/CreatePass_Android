@@ -7,6 +7,12 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
     <TextView
+        android:text="Default Password Settings "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+    <TextView
         android:text="Lenght "
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
@@ -68,8 +74,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_saveSynckey"
         android:visibility="gone" />
-    <ImageView
+    <Button
+        android:text="Reboot the World"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_reset"
+        android:visibility="gone" />
+  <Button
+      android:text="Change Login Pw"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/btn_changeCryptoKey" />
+<!--<ImageView
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1" />-->
 </LinearLayout>

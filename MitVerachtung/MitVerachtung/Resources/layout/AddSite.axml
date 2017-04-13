@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <EditText
+        android:inputType="text"
+        android:hint="Site"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_site" />
+    <EditText
+        android:inputType="text"
+        android:hint="Username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_username" />
+  <Button
+       android:text="Passwort Settings (Optional) "
+       android:textAppearance="?android:attr/textAppearanceMedium"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/btn_sitepasswortsettings" />
+  <TextView
+       android:text="Lenght "
+       android:textAppearance="?android:attr/textAppearanceMedium"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/lbl_length_site" 
+        android:visibility="gone" />
+  <SeekBar
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/sl_pwLenght_site"
+      android:max="24" 
+        android:visibility="gone" />
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/lbl_pwLenght_site"
+      android:visibility="gone" />
+  <TextView
+      android:text="Chars"
+      android:textAppearance="?android:attr/textAppearanceMedium"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/lbl_chars_site"
+        android:visibility="gone" />
+  <CheckBox
+      android:text="Use numbers"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/cb_useNumber_site"
+        android:visibility="gone" />
+  <CheckBox
+      android:text="Use aplhabet"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/cb_useAlphabet_site"
+        android:visibility="gone" />
+  <CheckBox
+      android:text="Use specialkeys"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/cb_useSpecial_site" 
+        android:visibility="gone" />
+</LinearLayout>

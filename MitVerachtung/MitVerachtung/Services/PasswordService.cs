@@ -91,13 +91,14 @@ namespace CreatePass
 
         private ulong GetHash(string passpharse)
         {
-            SHA512 algProvider = new SHA512Managed();
+            /* SHA512 algProvider = new SHA512Managed();
 
-            byte[] buffMsg1 = Encoding.BigEndianUnicode.GetBytes(passpharse);
+             byte[] buffMsg1 = Encoding.BigEndianUnicode.GetBytes(passpharse);
 
-            byte[] hashByteArray = algProvider.ComputeHash(buffMsg1);
+             byte[] hashByteArray = algProvider.ComputeHash(buffMsg1);
 
-            return BitConverter.ToUInt64(hashByteArray, 0);
+             return BitConverter.ToUInt64(hashByteArray, 0);*/
+            return new Services.CryptoService().HashSHA512AsLong(passpharse);
         }
 
         private string HashToPw(ulong hashAsInt)

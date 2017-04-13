@@ -11,33 +11,36 @@ using Android.Views;
 using Android.Widget;
 using Android.Util;
 using System.Threading.Tasks;
+using CreatePass.Services;
 
-namespace MitVerachtung
+namespace CreatePass.Activitys
 {
     [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : Activity
     {
-        static readonly string TAG = "X:" + typeof(SplashActivity).Name;
 
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
         {
             base.OnCreate(savedInstanceState, persistentState);
-            Log.Debug(TAG, "SplashActivity.OnCreate");
+            Logger.Debug("SplashActivity.OnCreate");
         }
 
         protected override void OnResume()
         {
             base.OnResume();
-
+            bool isFirstLaunch = false;
+            Type startView = typeof(FirstLaunchActivity);
              Task startupWork = new Task(() => {
-                Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
-                Task.Delay(5);  // Simulate a bit of startup work.
-                Log.Debug(TAG, "Working in the background - important stuff.");
-            });
-
+                 var settings = SettingService.GetInstance();
+                 isFirstLaunch = string.IsNullOrEmpty(settings.HashedUserKey);
+                 startView = isFirstLaunch ? typeof(FirstLaunchActivity) : typeof(LoginActivity);
+             });
+            
+            
             startupWork.ContinueWith(t => {
-                Log.Debug(TAG, "Work is finished - start MainActivity.");
-                StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+                Logger.Debug("Launch CreatePass");
+                    StartActivity(new Intent(Application.Context, startView));
+                    
             }, TaskScheduler.FromCurrentSynchronizationContext());
 
             startupWork.Start();

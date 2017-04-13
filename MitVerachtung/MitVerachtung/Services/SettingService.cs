@@ -12,7 +12,7 @@ using Android.Widget;
 using CreatePass;
 using Java.Security;
 
-namespace MitVerachtung.Services
+namespace CreatePass.Services
 {
     public class SettingService
     {
@@ -23,6 +23,8 @@ namespace MitVerachtung.Services
         private const string SET_AUTOCOPY = "SET_AUTOCOPY";
         private const string SET_ISNOTFIRSTLAUNCH = "SET_ISNOTFIRSTLAUNCH";
         private const string SET_SALT = "SET_SALT";
+        private const string SET_HASHEDUSERKEY = "SET_HASHEDUSERKEY";
+        private const string SET_CRYPTOSALT = "SET_CRYPTOSALT";
 
         private const string APP_NAME = "CreatePass";
 
@@ -38,13 +40,10 @@ namespace MitVerachtung.Services
 
         public string Salt { get; private set; }
 
+        public string HashedUserKey { get; private set; }
 
-        //public string SitekeySalt { get; private set; }
-
-
-        public delegate void SettingsChanged();
-        public event SettingsChanged OnSettingsChangedEvent;
-
+        public string CryptoSalt { get; private set; }
+        
 
         private static SettingService self;
 
@@ -57,15 +56,14 @@ namespace MitVerachtung.Services
             LoadPwChars();
             LoadSalt();
             LoaPwLen();
+            LoadUserkey();
         }
 
 
         public static SettingService GetInstance()
         {
             if (self == null)
-            {
                 self = new SettingService();
-            }
 
             return self;
         }
@@ -88,11 +86,16 @@ namespace MitVerachtung.Services
 
         private void WeNeedASalt()
         {
+            var salt = GetRandomString();
+            var cryptoSalt = GetRandomString();
+            WriteSetting(SET_CRYPTOSALT, cryptoSalt);
+            WriteSetting(SET_SALT, salt);
+        }
+        private string GetRandomString()
+        {
             var hashPW = new PasswordGeneration(DateTime.Now.Ticks.ToString());
             var random = new SecureRandom();
-            var salt = hashPW.Generate(random.NextInt().ToString(), random.NextInt().ToString());
-
-            WriteSetting(SET_SALT, salt); //todo: createsalt
+            return hashPW.Generate(random.NextInt().ToString(), random.NextInt().ToString());
         }
 
         private void LoadAutoCopy()
@@ -115,8 +118,14 @@ namespace MitVerachtung.Services
         private void LoadSalt()
         {
             Salt = ReadStringSetting(SET_SALT);
+            CryptoSalt = ReadStringSetting(SET_CRYPTOSALT);
         }
-        
+        private void LoadUserkey()
+        {
+            HashedUserKey = ReadStringSetting(SET_HASHEDUSERKEY);
+        }
+
+
         private void LoadIsNotFirstLoad()
         {
             IsNotFirstLaunch = ReadBoolSetting(SET_ISNOTFIRSTLAUNCH);
@@ -126,17 +135,12 @@ namespace MitVerachtung.Services
         {
             WriteSetting(SET_PASSWORDLENGHT, pwLen);
             PwLength = pwLen;
-
-            OnSettingsChangedEvent();
         }
 
         public void UpdateAutoCopy(bool autoCopy)
         {
             WriteSetting(SET_AUTOCOPY, autoCopy);
             AutoCopy = autoCopy;
-
-
-            OnSettingsChangedEvent();
         }
 
         public void UpdatePwChars(bool num, bool alphaNum, bool special)
@@ -149,20 +153,26 @@ namespace MitVerachtung.Services
             UseAlphaNumChars = alphaNum;
             UseSpecialChars = special;
 
-
-            OnSettingsChangedEvent();
-
         }
 
         public void UpdateSalt(string newSalt)
         {
             WriteSetting(SET_SALT, newSalt);
             Salt = newSalt;
-
-
-            OnSettingsChangedEvent();
         }
 
+        public void UpdateUserkey(string newKey)
+        {
+            WriteSetting(SET_HASHEDUSERKEY, newKey);
+            HashedUserKey = newKey;
+        }
+
+
+        public void Reset()
+        {
+            WriteSetting(SET_ISNOTFIRSTLAUNCH, true);
+            WriteSetting(SET_HASHEDUSERKEY, null);
+        }
 
         private void WriteSetting(string id, string value)
         {
